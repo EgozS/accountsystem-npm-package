@@ -32,8 +32,8 @@ function generateRandomUserId(length) {
 
 
 function createAccount(username, password, email, ip, hash = integer, idLength = integer, table) {
+    if (username.length > 0 && password.length > 0 && email.length > 0) {
     return new Promise((resolve, reject) => {
-        if (username.length > 0 && password.length > 0 && email.length > 0 && ip.length > 0) {
     var checksql = 'SELECT * FROM accounts WHERE username = ? OR email = ?';
     con.query(checksql, [username, email], function (err, result) {
         if (err) throw err;
@@ -46,17 +46,19 @@ function createAccount(username, password, email, ip, hash = integer, idLength =
     var sql = "INSERT INTO " + table + " (username, password, email, id, ip) VALUES ('" + username + "', '" + hashed + "', '" + email + "', '" + id + "', '" + ip + "')";
     con.query(sql, function (err, result) {
         if (err) throw err;
-        resolve('the account ' + username + ' was created successfully');
+        resolve('account was created successfully');
     });
-} else {
-    reject('username password and email cannot be blank!');
-}
 })
 }
+else {
+    reject('username password and email cannot be blank!');
+}
 
-function login(username, password, email, table) {
+}
 
-    const sql = `SELECT * FROM ${table} WHERE username = '${username}' OR email = '${email}'`;
+function login(username, password, table) {
+
+    const sql = `SELECT * FROM ${table} WHERE username = '${username}' OR email = '${username}'`;
   
     return new Promise((resolve, reject) => {
   

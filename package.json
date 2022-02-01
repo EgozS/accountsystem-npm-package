@@ -1,6 +1,6 @@
 {
   "name": "mysql_accountsystem",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "an account system module to easly create and login into accounts using mysql",
   "main": "index.js",
   "scripts": {
