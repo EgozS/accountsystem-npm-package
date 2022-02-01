@@ -11,6 +11,25 @@ npm i mysql_accountsystem
 ```
 
 ## Usage
+first thing first make the mysql database
+```sql
+CREATE DATABASE testDatabase
+```
+then create a table (this table can be edited in any way, just make sure to not change the names of the columns
+```sql
+USE testDatabase;
+CREATE TABLE accounts (
+`username` varchar(255),
+`password` varchar(255),
+`email` varchar(255),
+`id` varchar(255),
+`ip` varchar(255),
+`creationDate` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+`lastUpdated` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+```
+now going to the javascript part
+
 require the package
 ```javascript
 const accountSystem = require('mysql_accountsystem')
@@ -23,7 +42,7 @@ accountSystem.connectDatabase('host', 'user', 'password', 'database', function(e
     console.log('connected to database successfully!')
 })
 ```
-create account functio
+create account function
 ```javascript
 //create account
 accountSystem.createAccount('username', 'password', 'mail', 'ip', passwordHash(int), idLength(int), 'databaseTable')
